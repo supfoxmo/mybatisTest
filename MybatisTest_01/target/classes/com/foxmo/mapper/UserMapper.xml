@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace绑定一个对应的Dao/Mapper接口-->
+<mapper namespace="com.foxmo.mapper.UserMapper">
+    <!--  select查询语句-->
+    <!--  id:方法名      resultType：返回值类型       ParameType:参数类型-->
+    <select id="getUserList" resultType="User">
+        select * from user
+    </select>
+
+    <select id="getUserById" parameterType="int" resultType="User">
+        select * from user where id = #{id}
+    </select>
+
+    <insert id="addUser" parameterType="User">
+        insert into user(id,name,password) values(#{id},#{name},#{password})
+    </insert>
+
+    <update id="updateUser" parameterType="User">
+        update user set name = #{name}, password = #{password} where id = #{id}
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        delete from user where id = #{id}
+    </delete>
+
+    <!--模糊查询-->
+    <select id="getLikeUserList" parameterType="map" resultType="User">
+        select * from user where name like #{likeName}
+    </select>
+
+</mapper>

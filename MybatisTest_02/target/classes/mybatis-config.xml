@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!--  核心配置文件-->
+<configuration>
+    <!--引入外部配置文件-->
+    <properties resource="db.properties">
+        <!--外补配置文件优先级比较高-->
+<!--        <property name="username" value="root"/>-->
+<!--        <property name="password" value="123456"/>-->
+    </properties>
+
+    <typeAliases>
+        <typeAlias type="com.foxmo.pojo.User" alias="User"></typeAlias>
+
+        <!--扫描包中类，默认将类的别名设置为其类名，首字母小写（若类加了注解，则别名为其指定的名字）-->
+<!--        <package name="com.foxmo.pojo"/>-->
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value= "${driver}"/>
+                <property name="url" value= "${url}"/>
+                <property name="username" value= "${username}"/>
+                <property name="password" value= "${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--每一个mapper.xml都需要再Mybatis核心配置文件中注册-->
+    <mappers>
+        <!--方式一 （建议使用该方法）-->
+        <mapper resource="com/foxmo/mapper/UserMapper.xml"></mapper>
+        <!--方式二  注意：接口和其配置文件必须同名且再同一个包下-->
+<!--        <mapper class="com.foxmo.mapper.UserMapper"></mapper>-->
+        <!--方式三  注意：接口和其配置文件必须同名且再同一个包下-->
+<!--        <package name="com.foxmo.mapper"/>-->
+    </mappers>
+</configuration>

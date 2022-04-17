@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace绑定一个对应的Dao/Mapper接口-->
+<mapper namespace="com.foxmo.mapper.UserMapper">
+
+    <!--结果集映射-->
+    <resultMap id="UserMap" type="User">
+        <!--column:数据库中的字段      property:实体类中的属性-->
+<!--        若实体类中属性名和数据库中字段名相同，可以省略不写-->
+<!--        <result column="id" property="id"></result>-->
+<!--        <result column="name" property="name"></result>-->
+        <result column="password" property="pwd"></result>
+    </resultMap>
+
+    <!--  select查询语句-->
+    <!--  id:方法名      resultType：返回值类型       ParameType:参数类型-->
+
+<!--    若实体类中属性名和数据库中字段名不相同时:-->
+<!--    select * from user where id = #{id}  ==>   User(id=1005, name=王子博, pwd=null)-->
+<!--    解决方式一: 起别名-->
+<!--    select id,name,password as pwd from user where id = #{id}  ==>  User(id=1005, name=王子博, pwd=123456)-->
+    
+    <select id="getUserById" parameterType="int" resultMap="UserMap">
+        /*解决方式二：结果集映射*/
+        select * from user where id = #{id}  /*User(id=1005, name=王子博, pwd=123456)*/
+    </select>
+
+</mapper>
