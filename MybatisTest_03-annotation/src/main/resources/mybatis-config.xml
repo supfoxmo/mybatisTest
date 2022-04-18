@@ -6,22 +6,15 @@
 <!--  核心配置文件-->
 <configuration>
     <!--引入外部配置文件-->
-    <properties resource="db.properties">
-        <!--外补配置文件优先级比较高-->
-<!--        <property name="username" value="root"/>-->
-<!--        <property name="password" value="123456"/>-->
-    </properties>
+    <properties resource="db.properties"></properties>
 
     <settings>
         <!--标准日志工厂实现-->
-        <setting name="logImpl" value="LOG4J"/>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
     </settings>
 
     <typeAliases>
         <typeAlias type="com.foxmo.pojo.User" alias="User"></typeAlias>
-
-        <!--扫描包中类，默认将类的别名设置为其类名，首字母小写（若类加了注解，则别名为其指定的名字）-->
-<!--        <package name="com.foxmo.pojo"/>-->
     </typeAliases>
 
     <environments default="development">
@@ -35,13 +28,9 @@
             </dataSource>
         </environment>
     </environments>
-    <!--每一个mapper.xml都需要再Mybatis核心配置文件中注册-->
+
+    <!--绑定接口-->
     <mappers>
-        <!--方式一 （建议使用该方法）-->
-        <mapper resource="com/foxmo/mapper/UserMapper.xml"></mapper>
-        <!--方式二  注意：接口和其配置文件必须同名且再同一个包下-->
-<!--        <mapper class="com.foxmo.mapper.UserMapper"></mapper>-->
-        <!--方式三  注意：接口和其配置文件必须同名且再同一个包下-->
-<!--        <package name="com.foxmo.mapper"/>-->
+        <mapper class="com.foxmo.mapper.UserMapper"></mapper>
     </mappers>
 </configuration>

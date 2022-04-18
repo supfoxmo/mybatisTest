@@ -12,6 +12,11 @@
 <!--        <property name="password" value="123456"/>-->
     </properties>
 
+    <settings>
+        <!--标准日志工厂实现-->
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+
     <typeAliases>
         <typeAlias type="com.foxmo.pojo.User" alias="User"></typeAlias>
 

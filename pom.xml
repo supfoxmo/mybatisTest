@@ -12,6 +12,9 @@
         <module>MybatisTest_01</module>
         <module>MybatisTest_2</module>
         <module>MybatisTest_02</module>
+        <module>MybatisTest_03</module>
+        <module>MybatisTest_03</module>
+        <module>MybatisTest_03-annotation</module>
     </modules>
 
     <properties>

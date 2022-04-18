@@ -22,10 +22,14 @@
 <!--    select * from user where id = #{id}  ==>   User(id=1005, name=王子博, pwd=null)-->
 <!--    解决方式一: 起别名-->
 <!--    select id,name,password as pwd from user where id = #{id}  ==>  User(id=1005, name=王子博, pwd=123456)-->
-    
+
     <select id="getUserById" parameterType="int" resultMap="UserMap">
         /*解决方式二：结果集映射*/
         select * from user where id = #{id}  /*User(id=1005, name=王子博, pwd=123456)*/
+    </select>
+    <!--分页chaxun-->
+    <select id="getUserListByPage" parameterType="map" resultMap="UserMap">
+        select * from user limit #{startIndex},#{pageSize}
     </select>
 
 </mapper>
