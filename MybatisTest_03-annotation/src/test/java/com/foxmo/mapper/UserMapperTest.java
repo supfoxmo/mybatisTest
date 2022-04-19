@@ -42,4 +42,55 @@ public class UserMapperTest {
             sqlSession.close();
         }
     }
+
+    @Test
+    public void test3(){
+        SqlSession sqlSession = null;
+        try {
+            sqlSession = MybatisUtils.getSqlSession();
+            UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+            mapper.addUser(new User(1009,"周小天","123456"));
+
+            //提交事务
+            sqlSession.commit();
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            sqlSession.close();
+        }
+    }
+
+    @Test
+    public void test(){
+        SqlSession sqlSession = null;
+        try {
+            sqlSession = MybatisUtils.getSqlSession();
+            UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+            mapper.updateUser(new User(1007,"张三丰","123456"));
+
+            //提交事务
+            sqlSession.commit();
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            sqlSession.close();
+        }
+    }
+
+    @Test
+    public void test5(){
+        SqlSession sqlSession = null;
+        try {
+            sqlSession = MybatisUtils.getSqlSession();
+            UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+            mapper.deleteUser(1008);
+
+            //提交事务
+            sqlSession.commit();
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            sqlSession.close();
+        }
+    }
 }
