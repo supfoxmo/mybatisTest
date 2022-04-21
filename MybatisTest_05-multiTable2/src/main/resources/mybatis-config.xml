@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!--  核心配置文件-->
+<configuration>
+    <!--引入外部配置文件-->
+    <properties resource="db.properties"></properties>
+
+    <settings>
+        <!--标准日志工厂实现-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <typeAliases>
+        <typeAlias type="com.foxmo.pojo.Student" alias="student"></typeAlias>
+        <typeAlias type="com.foxmo.pojo.Teacher" alias="teacher"></typeAlias>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value= "${driver}"/>
+                <property name="url" value= "${url}"/>
+                <property name="username" value= "${username}"/>
+                <property name="password" value= "${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--绑定接口-->
+    <mappers>
+        <mapper class="com.foxmo.mapper.TeacherMapper"></mapper>
+        <mapper class="com.foxmo.mapper.StudentMapper"></mapper>
+    </mappers>
+</configuration>

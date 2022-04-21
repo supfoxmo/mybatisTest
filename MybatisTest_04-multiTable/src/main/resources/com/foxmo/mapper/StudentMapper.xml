@@ -4,7 +4,44 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!--  核心配置文件-->
-<mapper namespace="cpm.foxmo.mapper.StudentMapper">
+<mapper namespace="com.foxmo.mapper.StudentMapper">
+    <!--按照结果嵌套处理-->
+<!--    <select id="getStudent" resultMap="student">-->
+<!--        select s.id sid,s.name sname,t.name tname-->
+<!--        from student s,teacher t-->
+<!--        where s.tid = t.id-->
+<!--    </select>-->
+
+<!--    <resultMap id="student" type="Student">-->
+<!--        <result property="id" column="sid"></result>-->
+<!--        <result property="name" column="sname"></result>-->
+<!--        <association property="teacher" column="tid" javaType="Teacher">-->
+<!--            <result property="name" column="tname"></result>-->
+<!--        </association>-->
+<!--    </resultMap>-->
+
+    <!--方式二 :按照查询嵌套处理
+        思路：
+            1.查询所有的学生信息
+            2.根据查询出的学生的tid，寻找对应的老师
+    -->
+
+    <select id="getStudent" resultMap="StudentTeacher">
+        select * from student
+    </select>
+
+    <resultMap id="StudentTeacher" type="Student">
+        <result property="id" column="id"></result>
+        <result property="name" column="name"></result>
+        <!--复杂的属性，需要单独处理
+        对象：association
+        集合：collection   -->
+        <association property="teacher" column="tid" javaType="Teacher" select="getTeacherById"></association>
+    </resultMap>
+
+    <select id="getTeacherById" resultType="Teacher">
+        select * from teacher where id = #{id}
+    </select>
 
 </mapper>
 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--  核心配置文件-->
+<mapper namespace="com.foxmo.mapper.TeacherMapper">
+    <select id="getAllTeacher" resultType="Teacher">
+        select * from teacher
+    </select>
+
+    <select id="getTeacherById" resultMap="teacherstudent">
+        select t.id tid,t.name tname,s.id sid,s.name sname
+        from teacher t,student s
+        where t.id = s.tid and t.id = #{id}
+    </select>
+
+    <resultMap id="teacherstudent" type="Teacher">
+        <result property="id" column="tid"></result>
+        <result property="name" column="tname"></result>
+        <collection property="students" ofType="Student">
+            <result property="id" column="sid"></result>
+            <result property="name" column="sname"></result>
+            <result property="tid" column="tid"></result>
+        </collection>
+    </resultMap>
+</mapper>
