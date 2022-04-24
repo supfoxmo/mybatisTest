@@ -5,6 +5,9 @@
 
 <!--namespace绑定一个对应的Dao/Mapper接口-->
 <mapper namespace="com.foxmo.mapper.UserMapper">
+    <!--在当前Mapper.xml中使用二级缓存-->
+    <!--二级缓存作用域：namespace-->
+    <cache eviction="FIFO" flushInterval="60000" size="512" readOnly="true"/>
 
     <select id="getUserById" parameterType="int" resultType="User">
         select * from user where id = #{id}

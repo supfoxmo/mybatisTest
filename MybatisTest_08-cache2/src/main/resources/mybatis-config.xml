@@ -11,6 +11,8 @@
     <settings>
         <!--标准日志工厂实现-->
         <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <!--显示开启全局缓存，Mybatis默认开启全局缓存-->
+        <setting name="cacheEnabled" value="true"/>
     </settings>
 
     <typeAliases>
